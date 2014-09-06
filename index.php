@@ -5,7 +5,7 @@
 // CC BY-NC-SA - Jannik Beyerstedt, jannikbeyerstedt.de, jtByt-Pictures@gmail.com
 
 // file: index.php - draw the whole user interface (view only and editable version)
-// version: 0.1 (2014-09-06)
+// version: 1.0 (2014-09-07)
 // -------------------------------------------
 
 session_start();
@@ -37,11 +37,19 @@ if (isset($_POST["username"]) && isset($_POST["password"])) {
     }
   }
 }
+
+if (constant("PWBLOCKALL")) {
+  if ($_SESSION["login"] != 1) {
+    include 'login.php';
+    return;
+  }
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="de">
   <head>
-    <title><?php echo constant("SITETITLE") ?> - login</title>
+    <title><?php echo constant("SITETITLE") ?></title>
     <meta charset="utf-8" >
     <meta name="description" content="<?php echo constant("SITEDESC") ?>" >
     <meta name="keywords" content="<?php echo constant("SITEKEYS") ?>" >
@@ -51,7 +59,7 @@ if (isset($_POST["username"]) && isset($_POST["password"])) {
 
     <link rel="stylesheet" href="http://tasks.beyerstedt.de/assets/bootstrap/css/bootstrap.min.css" />
 
-    <link rel="stylesheet" href="http://tasks.beyerstedt.de/assets/mystyle.css" />
+    <link rel="stylesheet" href="http://tasks.beyerstedt.de/assets/style.css" />
   </head>
 
 <body>
@@ -80,7 +88,7 @@ if (isset($_POST["username"]) && isset($_POST["password"])) {
           <input name="inputName" type="text" class="form-control" id="inputName" placeholder="Dein Name">
         </div>
         <div class="form-group">
-          <label class="sr-only" for="inputDate">Dein Name</label>
+          <label class="sr-only" for="inputDate">Datum fällig</label>
           <input name="inputDate" type="date" class="form-control" id="inputDate" placeholder="Datum">
         </div>
         <button type="submit" class="btn btn-primary">Absenden</button>
@@ -128,7 +136,7 @@ if (isset($_POST["username"]) && isset($_POST["password"])) {
                     echo '';
                     break;
                   case 'title';
-                    echo "            <td id=\"title\">" . $cell . "</td>\n";
+                    echo "            <td id=\"title\"><p class=\"detail\" id=\"detail" . $row['id'] . "\">" . $cell . "</p></td>\n";
                     break;
                   case 'name';
                     echo "            <td id=\"name\">" . $cell . "</td>\n";
@@ -154,7 +162,15 @@ if (isset($_POST["username"]) && isset($_POST["password"])) {
                 }// end switch
               }
             }
-            echo "          </tr> \n";
+            switch ($row['status']) {
+              case 'Archiv';
+                break;
+              case 'trash';
+                break;
+              default:
+                echo "          </tr> \n";
+                break;
+            }
           }
         ?>
         </tbody>
@@ -178,20 +194,27 @@ if (isset($_POST["username"]) && isset($_POST["password"])) {
         <?php
           foreach($table_arr as $row) {
             switch ($row['status']) {
-              case 'Archiv';
+              case 'Archiv':
                 echo "          <tr id=\"row" . $row['id'] . "\"> \n";
+                break;
+              case 'trash':
+                if (constant("SHOWDELETED")) {
+                  echo "          <tr class=\"danger\" id=\"row" . $row['id'] . "\"> \n";
+                }
                 break;
               default:
                 break;
             }
-            if ($row['status'] == 'Archiv' && $row['status'] != 'trash') {
+            //if ($row['status'] == 'Archiv' && $row['status'] != 'trash') {
+            //if ($row['status'] == 'Archiv' || ( ($row['status'] == 'trash') && constant("SHOWDELETED") ) {
+            if ($row['status'] == 'Archiv' || ($row['status'] == 'trash' && constant("SHOWDELETED")) ) {
               foreach($row as $key=>$cell) {
                 switch ($key) {
                   case 'id':
                     echo '';
                     break;
                   case 'title';
-                    echo "            <td id=\"title\">" . $cell . "</td>\n";
+                    echo "            <td id=\"title\"><p class=\"detail\" id=\"detail" . $row['id'] . "\">" . $cell . "</p></td>\n";
                     break;
                   case 'name';
                     echo "            <td id=\"name\">" . $cell . "</td>\n";
@@ -213,7 +236,19 @@ if (isset($_POST["username"]) && isset($_POST["password"])) {
                 }// end switch
               }
             }
-            echo "          </tr> \n";
+            switch ($row['status']) {
+              case 'Archiv':
+                echo "          </tr> \n";
+                break;
+              case 'trash':
+                if (constant("SHOWDELETED")) {
+                  echo "          </tr> \n";
+                }
+                break;
+              default:
+                break;
+            }
+            
           }
         ?>
         </tbody>
@@ -231,7 +266,7 @@ if (isset($_POST["username"]) && isset($_POST["password"])) {
       <div class="login">
         <?php
         if ($_SESSION["login"] != 1) {
-          echo '<a href="/login.php"><button type="button" class="btn btn-default btn-sm">Log in</button></a>';
+          echo '<a href="./login.php"><button type="button" class="btn btn-default btn-sm">Log in</button></a>';
         }else {
           echo '<button type="button" class="btn btn-default btn-sm" onclick="logout()">Log out</button>';
         }
@@ -246,9 +281,10 @@ if (isset($_POST["username"]) && isset($_POST["password"])) {
   
   <!-- custom user interface an server communication scripts-->
   <?php if ($_SESSION["login"] == 1) :?>
-  <script src="./backendUI.js"></script>
+  <script src="./assets/backendUI.js"></script>
+  <?php else : ?>
+  <script src="./assets/frontendUI.js"></script>
   <?php endif ?>
-  <script src="frontendUI.js"></script>
-
+  
 </body>
 </html>

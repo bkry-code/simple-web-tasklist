@@ -5,7 +5,7 @@
 // CC BY-NC-SA - Jannik Beyerstedt, jannikbeyerstedt.de, jtByt-Pictures@gmail.com
 
 // file: config.php - config values and switches
-// version: 0.1 (2014-09-06)
+// version: 1.0 (2014-09-07)
 // -------------------------------------------
 
 
@@ -36,18 +36,12 @@ define ("UISUBTITLE", 'Jannik Beyerstedt');
 
 // advanced config
 // --------------------
-
-
 define ("EMPTYTRASH", false);           // delete all trashed items (true/ false)
+define ("SHOWDELETED", false);          // show deleted items in archive table (true/ false)
 
 // enable adding users simply by logging in - DISABLE AFTER USE!!!
 define ("ADDUSERS", false);             // (true/ false)
 
-// implement!
-define ("SHOWDELETED", false);          // show another table with deleted items (true/ false)
-
-// implement!
 define ("PWBLOCKALL", false);           // show nothing without user login (true/ false)
-  
 
 ?>

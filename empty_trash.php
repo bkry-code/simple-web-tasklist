@@ -5,7 +5,7 @@
 // CC BY-NC-SA - Jannik Beyerstedt, jannikbeyerstedt.de, jtByt-Pictures@gmail.com
 
 // file: empty_trash.php - deletes all items marked with trash from database
-// version: 0.1 (2014-09-06)
+// version: 1.0 (2014-09-07)
 // -------------------------------------------
 
 

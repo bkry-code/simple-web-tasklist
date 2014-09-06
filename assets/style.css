@@ -1,23 +1,41 @@
 html {
+  /* for sticky footer */
   position: relative;
   min-height: 100%;
 }
 body {
-  /* Margin bottom by footer height */
+  /* for sticky footer */
   margin-bottom: 60px;
 }
 
-body>div.container {
-/*  margin-right: 100px;*/
-  
+/* override bootstrap for p inside table, but p is needed for popver */
+tbody>tr>td>p {
+  margin: 0;
 }
 
+
+/* make task title input bigger */
 @media (min-width: 768px) {
 input#inputTitle {
   width: 350px;
 }
 }
-  
+
+form.detailForm,
+div.detailText{
+  width: 670px;
+}
+div.popover {
+  max-width: 700px;
+  width: auto;
+}
+
+
+/* make last column flush right */
+table tr td:last-child {
+    white-space: nowrap;
+    width: 1px;
+}
 
 tbody>tr>th#state,
 tbody>tr>td#state
@@ -39,7 +57,6 @@ tbody>tr>td>button {
 }
 
 
-
 .footer {
   position: absolute;
   bottom: 0;
@@ -50,8 +67,6 @@ tbody>tr>td>button {
   padding: 15px 0px;
 }
 .container {
-/*  width: auto;*/
-/*  max-width: 680px;*/
   padding: 0 15px;
 }
 .container .text-muted {
@@ -68,7 +83,3 @@ tbody>tr>td>button {
 .footer .btn-xs {
   margin: 5px 0;
 }
-.footer .btn-sm {
-  
-}
-

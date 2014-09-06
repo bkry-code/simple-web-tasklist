@@ -5,7 +5,7 @@
 // CC BY-NC-SA - Jannik Beyerstedt, jannikbeyerstedt.de, jtByt-Pictures@gmail.com
 
 // file: login.php - login page
-// version: 0.1 (2014-09-06)
+// version: 1.0 (2014-09-07)
 // -------------------------------------------
 
 include 'config.php';
@@ -23,8 +23,7 @@ include 'config.php';
 
     <link rel="stylesheet" href="http://tasks.beyerstedt.de/assets/bootstrap/css/bootstrap.min.css" />
 
-    <link rel="stylesheet" href="http://tasks.beyerstedt.de/assets/mystyle.css" />
-    <link rel="stylesheet" href="http://tasks.beyerstedt.de/assets/signin.css" />
+    <link rel="stylesheet" href="http://tasks.beyerstedt.de/assets/login.css" />
   </head>
 
   <body>

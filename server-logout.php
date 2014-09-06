@@ -5,7 +5,7 @@
 // CC BY-NC-SA - Jannik Beyerstedt, jannikbeyerstedt.de, jtByt-Pictures@gmail.com
 
 // file: server-logout.php - does session logout
-// version: 0.1 (2014-09-06)
+// version: 1.0 (2014-09-07)
 // -------------------------------------------
 
 
