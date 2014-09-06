@@ -1,0 +1,14 @@
+# STRONG HTACCESS PROTECTION
+<Files ~ "^.*\.([Hh][Tt][Aa])">
+order allow,deny
+deny from all
+satisfy all
+</Files>
+
+<Files *.json>
+deny from all
+</Files>
+
+<Files config.php>
+deny from all
+</Files>
