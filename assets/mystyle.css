@@ -1,0 +1,74 @@
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 60px;
+}
+
+body>div.container {
+/*  margin-right: 100px;*/
+  
+}
+
+@media (min-width: 768px) {
+input#inputTitle {
+  width: 350px;
+}
+}
+  
+
+tbody>tr>th#state,
+tbody>tr>td#state
+tbody>tr>th#date,
+tbody>tr>td#date{
+  width: 110px;
+}
+tbody>tr>th#name,
+tbody>tr>td#name{
+  width: 140px;
+}
+tbody>tr>th#title,
+tbody>tr>td#title{
+  min-width: 150px;
+}
+
+tbody>tr>td>button {
+  width: 72px;
+}
+
+
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 60px;
+  background-color: #ddd;
+  padding: 15px 0px;
+}
+.container {
+/*  width: auto;*/
+/*  max-width: 680px;*/
+  padding: 0 15px;
+}
+.container .text-muted {
+  margin: 5px 0;
+}
+
+.footer .text {
+  float: left;
+}
+.footer .login {
+  float: right;
+}
+
+.footer .btn-xs {
+  margin: 5px 0;
+}
+.footer .btn-sm {
+  
+}
+
