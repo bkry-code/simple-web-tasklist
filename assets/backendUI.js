@@ -66,6 +66,8 @@ function changeDate(id, opt) {
   }else {
     console.log('change: '+id+' to: '+date);
   }
+  
+  changeVal(id, 'date', date);
 }
 
 
