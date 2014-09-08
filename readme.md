@@ -35,6 +35,7 @@ You can configure it with one config file, e.g. password-save everything.
 
 
 ## functions to implement:
+- change task title
 
 ####scheduled for version 2.0
 - localise all UI strings, make english and german avalilable
