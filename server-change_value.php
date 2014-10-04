@@ -5,7 +5,8 @@
 // CC BY-NC-SA - Jannik Beyerstedt, jannikbeyerstedt.de, jtByt-Pictures@gmail.com
 
 // file: server-change_value.php - universal script to handle ajax POST to change a value
-// version: 1.0 (2014-09-07)
+// version: 1.1 (2014-10-05)
+// changelog: see readme.md
 // -------------------------------------------
 
 

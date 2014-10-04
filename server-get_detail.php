@@ -5,7 +5,8 @@
 // CC BY-NC-SA - Jannik Beyerstedt, jannikbeyerstedt.de, jtByt-Pictures@gmail.com
 
 // file: server-get_detail.php - specific script for delivering detail information
-// version: 1.0 (2014-09-07)
+// version: 1.1 (2014-10-05)
+// changelog: see readme.md
 // -------------------------------------------
 
 

@@ -1,3 +1,5 @@
+/* general css rules */
+/* -------------------- */
 html {
   /* for sticky footer */
   position: relative;
@@ -8,28 +10,37 @@ body {
   margin-bottom: 60px;
 }
 
-/* override bootstrap for p inside table, but p is needed for popver */
-tbody>tr>td>p {
-  margin: 0;
+/*adjust the glyphicon*/
+h1 .glyphicon {
+  top:3px;
+  font-size: 83%;
 }
 
+
+
+/* input section */
+/* -------------------- */
 
 /* make task title input bigger */
 @media (min-width: 768px) {
 input#inputTitle {
   width: 350px;
-}
+}}
+
+/* spacing between inputs and button at narrow displays */
+.form-group {
+  margin-bottom: 5px !important;
 }
 
-form.detailForm,
-div.detailText{
-  width: 670px;
-}
-div.popover {
-  max-width: 700px;
-  width: auto;
-}
 
+
+/* table section */
+/* -------------------- */
+
+/* override bootstrap for p inside table, but p is needed normal for popover */
+tbody>tr>td>p {
+  margin: 0;
+}
 
 /* make last column flush right */
 table tr td:last-child {
@@ -37,6 +48,7 @@ table tr td:last-child {
     width: 1px;
 }
 
+/* other column widths */
 tbody>tr>th#state,
 tbody>tr>td#state
 tbody>tr>th#date,
@@ -56,6 +68,41 @@ tbody>tr>td>button {
   width: 72px;
 }
 
+
+
+/* detail popovers */
+/* -------------------- */
+
+/* detail popover size */
+form.detailForm,
+div.detailText{
+  width: 670px;
+}
+div.popover {
+  max-width: 700px;
+  width: auto;
+}
+
+
+
+/* progress bars */
+/* -------------------- */
+
+/*adjust the progress bar container*/
+.progress {
+  margin-bottom: 0;
+}
+
+/* position text ontop of progress bar */
+.progress>p.detail{
+  position: absolute;
+  padding-left: 5px;
+}
+
+
+
+/* footer settings */
+/* -------------------- */
 
 .footer {
   position: absolute;

@@ -4,7 +4,8 @@
 // CC BY-NC-SA - Jannik Beyerstedt, jannikbeyerstedt.de, jtByt-Pictures@gmail.com
 
 // file: frontendUI.php - generates UI elements only used in frontend (no edit functions)
-// version: 1.0 (2014-09-07)
+// version: 1.1 (2014-10-05)
+// changelog: see readme.md
 // -------------------------------------------
 
 
@@ -37,7 +38,6 @@ $('tbody').children('tr').on('click','p', function(e) {
     }
   });
   
-  //var detailInit = '<div class="detailText"><p id="detailText'+id+'">';
   //var detailDef  = '(leer)</p></div>';
   var detailInit = '<div class="detailText" id="detailText'+id+'">';
   var detailDef  = ' .</div>';
@@ -51,6 +51,7 @@ $('tbody').children('tr').on('click','p', function(e) {
   
   $('p.detail#detail'+id).popover('show')
   $('#detailText'+id).text(currentText)
+  
   
   if (currentText == 'no details') {
     setTimeout(function(){

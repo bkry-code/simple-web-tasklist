@@ -5,7 +5,8 @@
 // CC BY-NC-SA - Jannik Beyerstedt, jannikbeyerstedt.de, jtByt-Pictures@gmail.com
 
 // file: config.php - config values and switches
-// version: 1.0 (2014-09-07)
+// version: 1.1 (2014-10-05)
+// changelog: see readme.md
 // -------------------------------------------
 
 
@@ -29,8 +30,13 @@ define ("SITEAUTHOR", 'Jannik Beyerstedt');
 define ("SITEROBOTS", 'noindex, nofollow');
 
 // set Title and subtitle of the page (top line of the page)
-define ("UITITLE", 'webtasks');
-define ("UISUBTITLE", 'Jannik Beyerstedt');
+define ("UITITLE", 'Webtasks');
+define ("UISUBTITLE", 'by Jannik Beyerstedt');
+
+// display a custom alert
+define ("ALERT_DISP", true);      // define if the alert is displayed
+define ("ALERT_TYPE", 'warning'); // bootstrap types: success, info, warning, danger
+define ("ALERT_TEXT", 'display some info or warning here');
 
 
 
@@ -43,5 +49,10 @@ define ("SHOWDELETED", false);          // show deleted items in archive table (
 define ("ADDUSERS", false);             // (true/ false)
 
 define ("PWBLOCKALL", false);           // show nothing without user login (true/ false)
+
+// lookup-table for matching progress bars
+define ("PROG_SCED", '10%');
+define ("PROG_WORK", '30%');
+define ("PROG_DONE", '100%');
 
 ?>

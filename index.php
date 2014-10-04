@@ -5,7 +5,8 @@
 // CC BY-NC-SA - Jannik Beyerstedt, jannikbeyerstedt.de, jtByt-Pictures@gmail.com
 
 // file: index.php - draw the whole user interface (view only and editable version)
-// version: 1.0 (2014-09-07)
+// version: 1.1 (2014-10-05)
+// changelog: see readme.md
 // -------------------------------------------
 
 session_start();
@@ -56,10 +57,12 @@ if (constant("PWBLOCKALL")) {
     <meta name="author" content="<?php echo constant("SITEAUTHOR") ?>" >
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
     <meta name="robots" content="<?php echo constant("SITEROBOTS") ?>" >
-
-    <link rel="stylesheet" href="http://tasks.beyerstedt.de/assets/bootstrap/css/bootstrap.min.css" />
-
-    <link rel="stylesheet" href="http://tasks.beyerstedt.de/assets/style.css" />
+    
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+    <link rel="apple-touch-icon" href="./apple-touch-icon-precomposed.png" />
+    
+    <link rel="stylesheet" href="./assets/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="./assets/style.css" />
   </head>
 
 <body>
@@ -67,15 +70,18 @@ if (constant("PWBLOCKALL")) {
     
     <header>
       <div class="page-header">  
-        <h1><?php echo constant("UITITLE") ?> <small><?php echo constant("UISUBTITLE") ?></small></h1>
+        <h1><span class="glyphicon glyphicon-tasks"></span> <?php echo constant("UITITLE") ?> <small><?php echo constant("UISUBTITLE") ?></small></h1>
       </div>
     </header>
     
     <?php
     if (constant("EMPTYTRASH")) {
       include 'empty_trash.php';
-    }
-    ?>
+    }?>
+    
+    <?php if (constant("ALERT_DISP")) : ?>
+    <div class="alert alert-<?php echo constant("ALERT_TYPE") ?>" role="alert"><?php echo constant("ALERT_TEXT") ?></div>
+    <?php endif ?>
     
     <section class="input">
       <form role="form" class="form-inline" action="server-save_new_item.php" method="post">
@@ -114,12 +120,18 @@ if (constant("PWBLOCKALL")) {
             switch ($row['status']) {
               case 'in Arbeit':
                 echo "          <tr class=\"warning\" id=\"row" . $row['id'] . "\"> \n";
+                $progr_val = constant("PROG_WORK");
+                $progr_col = 'progress-bar-warning';
                 break;
               case 'geplant';
                 echo "          <tr class=\"info\" id=\"row" . $row['id'] . "\"> \n";
+                $progr_val = constant("PROG_SCED");
+                $progr_col = 'progress-bar-info';
                 break;
               case 'fertig';
                 echo "          <tr class=\"success\" id=\"row" . $row['id'] . "\"> \n";
+                $progr_val = constant("PROG_DONE");
+                $progr_col = 'progress-bar-success';
                 break;
               case 'Archiv';
                 break;
@@ -136,7 +148,35 @@ if (constant("PWBLOCKALL")) {
                     echo '';
                     break;
                   case 'title';
-                    echo "            <td id=\"title\"><p class=\"detail\" id=\"detail" . $row['id'] . "\">" . $cell . "</p></td>\n";
+                    echo "            <td id=\"title\">";
+                    //if ( !empty($row['progress']) ) {
+                    if ( $row['status'] != 'eingereicht' ) {
+                      if ( !empty($row['progress']) && ($row['progress'] != '100%') ) { // if manual value
+                        $progr_val = $row['progress'];
+                      }
+                      if ( !empty($row['date']) ) { // if date set, check for overdue tasks
+                        $date_due = strtotime($row['date']);
+                        $current_date = time();
+                        if ( time() > $date_due ) {
+                          $progr_col = 'progress-bar-danger';
+                        }
+                      }
+                      if ( empty($progr_col) ) { // if no color set
+                        $progr_col = '';
+                      }
+                      echo "<div class=\"progress\">\n";
+                      echo "              <div class=\"progress-bar " . $progr_col . "\" role=\"progressbar\" aria-valuenow=\"" . $progr_val . "\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: " . $progr_val . ";\">\n";
+                      echo "                <span class=\"sr-only\">" . $progr_val . " Complete</span></div>\n";
+                      echo "              <p class=\"detail\" id=\"detail" . $row['id'] . "\">" . $cell . "</p>\n";
+                      echo "            </div>";
+                    }else {
+                      echo "<p class=\"detail\" id=\"detail" . $row['id'] . "\">" . $cell . "</p>";
+                    }
+                    echo "</td>\n";
+                    
+                    unset($progr_val);
+                    unset($progr_col);
+                    
                     break;
                   case 'name';
                     echo "            <td id=\"name\">" . $cell . "</td>\n";
@@ -157,7 +197,8 @@ if (constant("PWBLOCKALL")) {
                     }
                     break;
                   default:
-                    echo "          <tr> \n";
+                    //echo "          <tr> \n";
+                    echo '';
                     break;
                 }// end switch
               }

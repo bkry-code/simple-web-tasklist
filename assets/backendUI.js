@@ -4,8 +4,10 @@
 // CC BY-NC-SA - Jannik Beyerstedt, jannikbeyerstedt.de, jtByt-Pictures@gmail.com
 
 // file: backendUI.js - generates UI-Elements and does server communication for backend (login)
-// version: 1.0 (2014-09-07)
+// version: 1.1 (2014-10-05)
+// changelog: see readme.md
 // -------------------------------------------
+
 
 
 // generate popovers for each .changeState button
@@ -20,10 +22,16 @@ $('.changeState').each(function() { // do for each button
   var popArch  = '<button class="btn btn-default btn-xs btn-block" onclick="changeVal(\''+id+'\',\'status\',\'Archiv\')">archive</button>';
   var popTrash = '<button class="btn btn-danger btn-xs btn-block" onclick="changeVal(\''+id+'\',\'status\',\'trash\')">trash</button>';
 
-  $('#state'+id).popover({trigger:'focus',
+  $('#state'+id).popover({trigger:'manual', // focus
                      html:true, 
                      placement: 'top',
                      content: popSubm+popSched+popProgr+popDone+popArch+popTrash })
+
+  
+  $('#state'+id).click(function(){
+    hideAllPopovers(this);
+    $('#state'+id).popover('show')
+  })
 } ) // end each popover state change
 
 
@@ -45,10 +53,30 @@ $('.changeDate').each(function() { // do for each button
                      content: dateForm+datePicr+dateSubm+dateDel+dateCncl+dateEnd })
   
   $('#date'+id).click(function(){
-    $('#date'+id).popover('show')
+    hideAllPopovers(this);
+    $('#date'+id).popover('show');
   })
 
 } ) // end each popover date change
+
+
+// close popovers before another popover is openend
+// give it the this pointer, can´t figure out how it works otherwise
+// --------------------
+function hideAllPopovers (elem) {
+  $('.changeState').not(elem).each(function() {
+    var id = this.id.replace('state','');
+    $('#state'+id).popover('hide');
+  });
+  $('.changeDate').not(elem).each(function() {
+    var id = this.id.replace('date','');
+    $('#date'+id).popover('hide');
+  });
+//  $('.detail').not(elem).each(function() {
+//    var id = this.id.replace('detail','');
+//    $('p.detail#detail'+id).popover('hide');
+//  });
+}
 
 
 // prepare date data to be send to server (get date value, make a blank date, etc.)
@@ -86,12 +114,13 @@ $('tbody').children('tr').on('click','p', function(e) {
     data: getRequest,
     cache: false,
     success:  function(data){
-      if (data.substr(0, 4) != 'ERROR') {
+      if (data.substr(0, 5).toLowerCase() != 'error') {
         if (data !== '') { // if not empty
           currentText = data;
-          $('#detailText'+id).val(currentText)
+          $('#detailText'+id).val(currentText);
+          //$('#detailText'+id).height( $('#detailText'+id)[0].scrollHeight );
         }else {
-          $('#detailText'+id).val('no details')
+          $('#detailText'+id).val('no details');
           console.log('detail empty');
         }
       }else {
@@ -100,34 +129,80 @@ $('tbody').children('tr').on('click','p', function(e) {
     }
   });
   
-  var detailInit = '<form name="detailForm'+id+'" role="form" class="detailForm" ><div class="form-group">'
+  var detailInit = '<form name="detailForm'+id+'" role="form" class="detailForm" ><div class="form-group">';
+  
+  var detTitleTx = '<input  name="titleFormInput'+id+'" type="text" class="form-control changeTitle" id="titleText'+id+'"></input>';
+  
   var detailTFld = '<textarea  name="detailFormInput'+id+'" type="textarea" class="form-control changeDetail" id="detailText'+id+'"></textarea></div>';
-  var detailSubm = '<div class="detailButtons"> <button onclick="changeDetail('+id+')" type="button" class="btn btn-primary btn-sm" id="detailSubmit'+id+'">ändern</button> ';
+  var detailSubm = '<div class="detailButtons form-inline"> <button onclick="changeDetail('+id+')" type="button" class="btn btn-primary btn-sm" id="detailSubmit'+id+'">ändern</button> ';
   var detailCncl = '<button onclick="detailPop_Hide(\''+id+'\')" type="button" class="btn btn-default btn-sm" id="detailCancel'+id+'">schließen</button>';
+  
+  var detProgPre = '<div class="input-group input-group-sm" id="progress"><span class="input-group-addon">progress</span>';
+  var detProgSet = '<input name="detailProgressInput'+id+'" type="number" min="0" max="100" step="10" class="form-control changeProgress" id="detailProgress'+id+'"></input>';
+  var detProgPst = '<span class="input-group-addon">%</span></div>';
+  var detProgRst = ' <button onclick="detailProg_rst(\''+id+'\')" type="button" class="btn btn-default btn-sm" id="detailCancel'+id+'">auto progress</button>';
+  
   var detailEnd  = '<div></form>';
+  
+  var detProgAll = detProgPre + detProgSet + detProgPst + detProgRst;
+  var detTskTitl = detTitleTx;
   
   $('p.detail#detail'+id).popover({trigger:'manual',
                      html:true, 
                      placement: 'top',
-                     content: detailInit+detailTFld+detailSubm+detailCncl+detailEnd})
+                     content: detailInit+detTskTitl+detailTFld+detailSubm+detailCncl+detProgAll+detailEnd})
   
-  $('p.detail#detail'+id).popover('show')
+  hideAllPopovers(this);
+  $('p.detail#detail'+id).popover('show');
+  
+  // set title text field to current value
+  var titleVal = $(this).text();
+  $('#titleText'+id).val(titleVal);
+  
+  // display current progress % in the input field
+  var progrVal = $(this).parent().children('div.progress-bar').attr('aria-valuenow');
+  if (progrVal !== undefined ) {
+    progrVal = progrVal.substr(0,2);
+    $('#detailProgress'+id).val(progrVal);
+  }
 })
 
-// hide pover on clicking cancel
+// hide popover on clicking cancel
 // --------------------
 function detailPop_Hide (id) {
   $('p.detail#detail'+id).popover('hide');
   console.log('detail popover hidden');
 }
 
+// reset progress value
+// --------------------
+function detailProg_rst (id) {
+  console.log('detail progress reset');
+  
+  changeVal(id, 'progress', ''); // set empty string
+}
+
+
 // prepare text to be send to server
 // --------------------
 function changeDetail (id) {
   $('p.detail#detail'+id).popover('hide');
   
-  var text = $('#detailText'+id).val();
-  changeVal(id, 'detail', text);
+  var detail = $('#detailText'+id).val();
+  if (detail == 'no details') {
+    detail = '';
+  }
+  changeVal(id, 'detail', detail);
+  
+  var progress = $('#detailProgress'+id).val() + '%';
+  if ( progress != '%' ) {
+    changeVal(id, 'progress', progress);
+  }
+  
+  var title = $('#titleText'+id).val();
+  if ( title.trim() ) { // if text is not empty or blanks
+    changeVal(id, 'title', title);
+  }
 }
 
 

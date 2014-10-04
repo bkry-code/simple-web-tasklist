@@ -26,16 +26,27 @@ So that everyone can see scheduled tasks, we can also find better dates for on-s
 
 This php webapplication work very simple, you can give every task a title, leave your name for querstions and select a date. The items are ordered the newest last.  
 The admin (password login) can change the values of each item.  
-You can configure it with one config file, e.g. password-save everything.
+You can configure it with one config file, e.g. password-protect everything.
 
 
 ## changelog:
 - 0.1: first commit
 - 1.0: first stable version
+- 1.1: progress bars + change task title + several bugfixes
 
+#### 1.1:
+- change task title
+- add progress bars and functionality for them
+  - set manual value
+  - do automatic value based on status
+  - change color corresponding to status
+  - mark progress bar red, if task is overdue
+- icons added
 
 ## functions to implement:
-- change task title
+- subtasks
+  - change progress bar value accordingly to amout of subtasks done
+
 
 ####scheduled for version 2.0
 - localise all UI strings, make english and german avalilable
