@@ -57,10 +57,10 @@ if ( !empty($_POST['inputTitle']) ) {
 
 someone submitted a new item to your list:
 
-title: " . $_POST['inputTitle'] . "
-by:   " . $_POST['inputName'] . "
-date:  " . $_POST['inputDate'] . "
-json:  " . $json_new_item . "
+you will do: \t" . $_POST['inputTitle'] . "
+due date: \t" . $_POST['inputDate'] . "
+submitted by: \t" . $_POST['inputName'] . "
+
 
 powered by your webserver";
   

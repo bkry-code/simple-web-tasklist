@@ -28,7 +28,8 @@ input#inputTitle {
 }}
 
 /* spacing between inputs and button at narrow displays */
-.form-group {
+.input>form>div.form-group,
+.input>form>button{
   margin-bottom: 5px !important;
 }
 
