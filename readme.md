@@ -33,6 +33,7 @@ You can configure it with one config file, e.g. password-protect everything.
 - 0.1: first commit
 - 1.0: first stable version
 - 1.1: progress bars + change task title + several bugfixes
+- 1.1.1: bugfix: progress bar was not green if task was done and overdue
 
 #### 1.1:
 - change task title
@@ -46,7 +47,9 @@ You can configure it with one config file, e.g. password-protect everything.
 ## functions to implement:
 - subtasks
   - change progress bar value accordingly to amout of subtasks done
+- preset the set date in the datepicker.
 
 
 ####scheduled for version 2.0
 - localise all UI strings, make english and german avalilable
+- reorder tasks

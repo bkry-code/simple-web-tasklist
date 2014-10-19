@@ -5,7 +5,7 @@
 // CC BY-NC-SA - Jannik Beyerstedt, jannikbeyerstedt.de, jtByt-Pictures@gmail.com
 
 // file: index.php - draw the whole user interface (view only and editable version)
-// version: 1.1 (2014-10-05)
+// version: 1.1.1 (2014-10-19)
 // changelog: see readme.md
 // -------------------------------------------
 
@@ -154,7 +154,9 @@ if (constant("PWBLOCKALL")) {
                       if ( !empty($row['progress']) && ($row['progress'] != '100%') ) { // if manual value
                         $progr_val = $row['progress'];
                       }
-                      if ( !empty($row['date']) ) { // if date set, check for overdue tasks
+                      
+                      // if date is set, chech for overdue tasks. But not if task is done
+                      if ( !empty($row['date']) && ($row['status'] != 'fertig') ) {
                         $date_due = strtotime($row['date']);
                         $current_date = time();
                         if ( time() > $date_due ) {
