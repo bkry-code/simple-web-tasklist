@@ -1,6 +1,13 @@
+.DS_Store
+.VolumeIcon.icns
+.fseventsd
+Icon^M^M
+
+.dropbox
+Icon?
+
+-iam.txt
+
 config.php
 login.json
 database.json
-.dropbox
--iam.txt
-Icon
