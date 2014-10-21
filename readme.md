@@ -34,6 +34,7 @@ You can configure it with one config file, e.g. password-protect everything.
 - 1.0: first stable version
 - 1.1: progress bars + change task title + several bugfixes
 - 1.1.1: bugfix: progress bar was not green if task was done and overdue
+- 1.1.2: bugfix: task was OVERdue even on planned day, not the next day
 
 #### 1.1:
 - change task title

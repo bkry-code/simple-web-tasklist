@@ -5,7 +5,7 @@
 // CC BY-NC-SA - Jannik Beyerstedt, jannikbeyerstedt.de, jtByt-Pictures@gmail.com
 
 // file: index.php - draw the whole user interface (view only and editable version)
-// version: 1.1.1 (2014-10-19)
+// version: 1.1.2 (2014-10-21)
 // changelog: see readme.md
 // -------------------------------------------
 
@@ -95,7 +95,7 @@ if (constant("PWBLOCKALL")) {
         </div>
         <div class="form-group">
           <label class="sr-only" for="inputDate">Datum fällig</label>
-          <input name="inputDate" type="date" class="form-control" id="inputDate" placeholder="Datum">
+          <input name="inputDate" type="date" class="form-control" id="inputDate" placeholder="Datum: JJJJ-MM-DD">
         </div>
         <button type="submit" class="btn btn-primary">Absenden</button>
       </form>
@@ -157,7 +157,7 @@ if (constant("PWBLOCKALL")) {
                       
                       // if date is set, chech for overdue tasks. But not if task is done
                       if ( !empty($row['date']) && ($row['status'] != 'fertig') ) {
-                        $date_due = strtotime($row['date']);
+                        $date_due = strtotime($row['date']) + (24*60*60);
                         $current_date = time();
                         if ( time() > $date_due ) {
                           $progr_col = 'progress-bar-danger';

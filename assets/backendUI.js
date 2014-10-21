@@ -137,7 +137,7 @@ $('tbody').children('tr').on('click','p', function(e) {
   var detailSubm = '<div class="detailButtons form-inline"> <button onclick="changeDetail('+id+')" type="button" class="btn btn-primary btn-sm" id="detailSubmit'+id+'">ändern</button> ';
   var detailCncl = '<button onclick="detailPop_Hide(\''+id+'\')" type="button" class="btn btn-default btn-sm" id="detailCancel'+id+'">schließen</button>';
   
-  var detProgPre = '<div class="input-group input-group-sm" id="progress"><span class="input-group-addon">progress</span>';
+  var detProgPre = '    <div class="input-group input-group-sm" id="progress"><span class="input-group-addon">progress</span>';
   var detProgSet = '<input name="detailProgressInput'+id+'" type="number" min="0" max="100" step="10" class="form-control changeProgress" id="detailProgress'+id+'"></input>';
   var detProgPst = '<span class="input-group-addon">%</span></div>';
   var detProgRst = ' <button onclick="detailProg_rst(\''+id+'\')" type="button" class="btn btn-default btn-sm" id="detailCancel'+id+'">auto progress</button>';
