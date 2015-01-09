@@ -1,7 +1,9 @@
 // -------------------------------------------
 // webtasks/ bugtracker (by Jannik Beyerstedt)
 // simple public task/ bug management system. Based on twitter bootstrap, php, jquery and a json database
-// CC BY-NC-SA - Jannik Beyerstedt, jannikbeyerstedt.de, jtByt-Pictures@gmail.com
+
+// copyright: Jannik Beyerstedt | http://jannikbeyerstedt.de | jtByt.Pictures@gmail.com
+// license: http://www.gnu.org/licenses/gpl-3.0.txt GPLv3 License
 
 // file: backendUI.js - generates UI-Elements and does server communication for backend (login)
 // version: 1.1 (2014-10-05)

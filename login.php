@@ -2,10 +2,13 @@
 // -------------------------------------------
 // webtasks/ bugtracker (by Jannik Beyerstedt)
 // simple public task/ bug management system. Based on twitter bootstrap, php, jquery and a json database
-// CC BY-NC-SA - Jannik Beyerstedt, jannikbeyerstedt.de, jtByt-Pictures@gmail.com
+
+// copyright: Jannik Beyerstedt | http://jannikbeyerstedt.de | jtByt.Pictures@gmail.com
+// license: http://www.gnu.org/licenses/gpl-3.0.txt GPLv3 License
 
 // file: login.php - login page
 // version: 1.0 (2014-09-07)
+// changelog: see readme.md
 // -------------------------------------------
 
 include 'config.php';
