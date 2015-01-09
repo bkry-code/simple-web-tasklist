@@ -29,6 +29,20 @@ The admin (password login) can change the values of each item.
 You can configure it with one config file, e.g. password-protect everything.
 
 
+## how to use:
+- copy the config.default.php file to config.php
+- configure your system:
+  - set your Email address at "EMAILTO", or turn Email notifications off at "EMAIL"
+  - set your name at "SITEAUTHOR" and set some "SITETITLE" for html metadata
+  - set "UITITLE" and "UISUBTITLE" for the page heading and subtitle.
+  - you can display some alerts for your users with "ALERT_DISP"
+- create a user:
+  - set "ADDUSERS" to TRUE
+  - log in with some new username and password
+  - set "ADDUSERS" to FALSE!!!
+- now there are 3 files for your own: config.php, database.json and login.json  
+they are excluded from your git by .gitignore, so you can pull updates without any worries about your data.
+
 ## changelog:
 - 0.1: first commit
 - 1.0: first stable version
