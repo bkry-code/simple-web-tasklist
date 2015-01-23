@@ -1,6 +1,6 @@
 # simple-web-tasklist
 by jtByt.Pictures, Jannik Beyerstedt from Hamburg, Germany  
-[jannik.beyerstedt.de](http://jannik.beyerstedt.de) | [github](https://github.com/jtByt-Pictures)  
+[jannik.beyerstedt.de](http://jannik.beyerstedt.de) | [Github](https://github.com/jbeyerstedt)  
 
 ## functions:
 - submit tasks (title, your name, date scheduled)
