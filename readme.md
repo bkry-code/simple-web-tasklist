@@ -1,8 +1,11 @@
 # simple-web-tasklist
 by Jannik Beyerstedt from Hamburg, Germany  
-[jannik.beyerstedt.de](http://jannik.beyerstedt.de) | [Github](https://github.com/jbeyerstedt)  
+[jannikbeyerstedt.de](http://jannikbeyerstedt.de) | [Github](https://github.com/jbeyerstedt)  
+**license:** GNU GPL v3  
 
-## functions:
+**NOTE:** The development of this tasklist is currently discontinued. It was a little personal training excercise, but is not needed any more.
+
+## Functions:
 - submit tasks (title, your name, date scheduled)
 - different states:
 	- submitted
@@ -19,7 +22,7 @@ by Jannik Beyerstedt from Hamburg, Germany
 - e-mail notification for every added item
 - it works mobile as well
 
-## introduction
+## Introduction
 I wanted a very simple solution for a webbased task list. The backgroud is that I´m doing support for a piece of software for a company.  
 I wanted a simple solition that anyone can submit a task and see the status of all of these tasks. So everyone knows about already answered questions and tasks done. It´s particulary about: "Hey this doesn´t work as I would do it, how is it done?", "Import these addresses for me" and "please fix my computer".  
 So that everyone can see scheduled tasks, we can also find better dates for on-site support. 
@@ -29,7 +32,7 @@ The admin (password login) can change the values of each item.
 You can configure it with one config file, e.g. password-protect everything.
 
 
-## how to use:
+## How to Use:
 - copy the config.default.php file to config.php
 - configure your system:
   - set your Email address at "EMAILTO", or turn Email notifications off at "EMAIL"
@@ -43,7 +46,7 @@ You can configure it with one config file, e.g. password-protect everything.
 - now there are 3 files for your own: config.php, database.json and login.json  
 they are excluded from your git by .gitignore, so you can pull updates without any worries about your data.
 
-## changelog:
+## Changelog:
 - 0.1: first commit
 - 1.0: first stable version
 - 1.1: progress bars + change task title + several bugfixes
@@ -65,6 +68,6 @@ they are excluded from your git by .gitignore, so you can pull updates without a
 - preset the set date in the datepicker.
 
 
-####scheduled for version 2.0
+#### scheduled for version 2.0
 - localise all UI strings, make english and german avalilable
 - reorder tasks
